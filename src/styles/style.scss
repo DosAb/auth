@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+
+:root{
+    --black: #212121;
+    --grey: #767676;
+    --button-color: #292929;
+    --light-grey: #F8F8F8;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 100%;
+    border-radius: 12px;
+    background: var(--button-color);
+    color: var(--light-grey);
+    font-size: 1.6rem;
+}
+
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
