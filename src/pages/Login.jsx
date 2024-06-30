@@ -52,7 +52,6 @@ export default function Login()
         />
       </div>
       <button className="login__btn">Войти</button>
-
       <h3>У меня еще нет аккаунта</h3>
     </form>
   </div>
