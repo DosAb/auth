@@ -10,16 +10,7 @@ import { basicSchema } from "../schemas"
 
 export default function Register() {
 
-  const userRef = useRef()
-  const errorRef = useRef()
-
-  const [errorMessage, setErrorMessage] = useState('')
   const [succes, setSucces] = useState(false)
-
-  const onSubmit = (values, actions)=>{
-    console.log(values)
-  }
-
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -35,7 +26,9 @@ export default function Register() {
       confirmPassword: '',
     },
     validationSchema: basicSchema,
-    onSubmit,
+    onSubmit: ()=>{
+      console.log("submit")
+    },
   });
 
   return (
@@ -46,8 +39,8 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           {errors.email && touched.email && <p className="error">{errors.email}</p>}
           <input
-            type='email'
             className={errors.email && touched.email ? "input-error" : ""}
+            type='email'
             placeholder='Введи адрес почты'
             name='email'
             onChange={handleChange}
@@ -58,7 +51,6 @@ export default function Register() {
           <input
             type="text"
             className={errors.login && touched.login ? "input-error" : ""}
-            id="login"
             placeholder="Придумай логин"
             name="login"
             onChange={handleChange}
@@ -70,9 +62,8 @@ export default function Register() {
             <input
               type={showPassword ? "text" : "password"}
               className={errors.password && touched.password ? "input-error" : ""}
-              placeholder="Пароль (тоже введи)"
+              placeholder="Создай пароль"
               name="password"
-              id="password"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
@@ -90,7 +81,6 @@ export default function Register() {
               className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
               placeholder='Повтори пароль'
               name='confirmPassword'
-              id="confirmPassword"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.confirmPassword}
@@ -102,7 +92,7 @@ export default function Register() {
             />
           </div>
           <button type="submit" className="login__btn">Далее</button>
-          {isSubmitting ? (<h1>submitin</h1>) : ''}
+            {isSubmitting ? (<h1>submitin</h1>) : ''}
         </form>
       </div>
     </>

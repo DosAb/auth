@@ -11,7 +11,6 @@ function App() {
       <main className="container wrapper">
         <Routes>
           <Route path="/" element={<Register />} />
-          {/* <Route path="/:id" element={<Detail />} /> */}
         </Routes>
       </main>
     </>
