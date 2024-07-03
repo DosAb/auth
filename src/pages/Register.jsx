@@ -10,7 +10,7 @@ import eyeClosedImg from '/imgs/eye-closed.svg'
 import background from '/imgs/background.svg'
 import arrowBack from '/imgs/arrow-back.svg'
 
-import { basicSchema } from "../schemas"
+import { registerSchema } from "../schemas"
 
 const register_url = "https://pudge-backender.org.kg/register/"
 
@@ -51,7 +51,7 @@ export default function Register() {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: basicSchema,
+    validationSchema: registerSchema,
     onSubmit: (values, actions)=>{
       console.log("submit")
       actions.resetForm()
