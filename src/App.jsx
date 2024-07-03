@@ -8,9 +8,10 @@ function App() {
 
   return (
     <>
-      <main className="container wrapper">
+      <main className="">
         <Routes>
           <Route path="/" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
     </>
