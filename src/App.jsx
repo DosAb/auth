@@ -11,7 +11,7 @@ function App() {
     <>
       <main className="">
         <Routes>
-          <Route path="/authLogin" element={<AuthLayout />} />
+          <Route path="/authLayout" element={<AuthLayout />} />
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

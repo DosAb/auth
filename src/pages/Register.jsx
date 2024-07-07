@@ -58,7 +58,7 @@ export default function Register() {
       console.log("submit")
       actions.resetForm()
       handleRegister({ email: values.email, username: values.login, password: values.password})
-      navigate('/authLogin');
+      navigate('/authLayout');
     },
   });
 
