@@ -1,22 +1,37 @@
+import axios from "../api/axios"
+
+import { useQuery, useMutation } from "@tanstack/react-query";
+
 import { useFormik } from "formik"
 import { useState, useRef, useEffect } from "react"
-import { useNavigate, NavLink } from 'react-router-dom';
-import "../styles/login.scss"
-
-import axios from "../api/axios"
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { registerSchema } from "../schemas"
+import { increment } from "../store/counterSlice";
 
 import eyeOpenedImg from '/imgs/eye-opened.svg'
 import eyeClosedImg from '/imgs/eye-closed.svg'
 import background from '/imgs/background.svg'
 import arrowBack from '/imgs/arrow-back.svg'
+import "../styles/login.scss"
 
-import { registerSchema } from "../schemas"
 
 const register_url = "https://pudge-backender.org.kg/register/"
 
 export default function Register() {
 
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
   const navigate = useNavigate()
+
+  function handleIncrement(){
+    dispatch((increment()))
+    console.log(count)
+  }
+
+  useEffect(()=>{
+    // handleIncrement()
+  },[])
 
   const [succes, setSucces] = useState(false)
 
@@ -26,19 +41,24 @@ export default function Register() {
   const handlePasswordShow = () => setShowPassword(!showPassword);
   const handleConfirmPasswordShow = () => setShowConfirmPassword(!showConfirmPassword);
 
+  useQuery({
+    queryKey: ["login"]
+  })
+
   const handleRegister = async (e) => {
     try{
-      const responce = await axios.post(
+      const response = await axios.post(
         register_url,
-        JSON.stringify({ email: "user@example.com", username: "someone", password: "password"}), 
+        { email: "user@example.com", username: "someone", password: "password"}, 
         {
           headers: {'Content-Type': 'application/json'},
           withCredentials: true
         }
       )
-      console.log(responce.data)
+
+      console.log(response.data)
     } catch (err) {
-      if(!err?.responce){
+      if(!err?.response){
         console.log(err)
       }
     }
@@ -56,6 +76,7 @@ export default function Register() {
       console.log("submit")
       actions.resetForm()
       handleRegister()
+      navigate('/authLogin');
     },
   });
 
@@ -107,6 +128,20 @@ export default function Register() {
                 onClick={handlePasswordShow}
               />
             </div>
+            <ul className="">
+              {errors.password == "От 8 до 15 символов" ?
+               <h1>От 8 до 15 символов</h1> : <h1>От 8 до 15 символов ✅</h1>
+              }
+              {errors.password == "Строчные и прописные буквы" ?
+               <h1>Строчные и прописные буквы</h1> : <h1>Строчные и прописные буквы ✅</h1>
+              }
+              {errors.password == "Минимум 1 цифра" ?
+               <h1>Минимум 1 цифра</h1> : <h1>Минимум 1 цифра ✅</h1>
+              }
+              {errors.password == `Минимум 1 спецсимвол (!, ", #, $...)` ?
+               <h1>Минимум 1 спецсимвол (!, ", #, $...)</h1> : <h1>Минимум 1 спецсимвол (!, ", #, $...) ✅</h1>
+              }
+            </ul>
             <div className="input__container">
               {errors.confirmPassword && touched.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
               <input
