@@ -25,14 +25,7 @@ export default function LoginForm() {
     }
   };
 
-  const {
-    values,
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting,
   } = useFormik({
     initialValues: {
       login: "",
