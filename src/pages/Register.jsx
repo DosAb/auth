@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 import { useFormik } from "formik"
@@ -8,7 +6,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerSchema } from "../schemas"
 import { increment } from "../store/counterSlice";
-
 import { postRegister } from "../api/axios" 
 
 import eyeOpenedImg from '/imgs/eye-opened.svg'
@@ -17,8 +14,6 @@ import background from '/imgs/background.svg'
 import arrowBack from '/imgs/arrow-back.svg'
 import "../styles/login.scss"
 
-
-const register_url = "https://pudge-backender.org.kg/register/"
 
 export default function Register() {
 
@@ -31,10 +26,6 @@ export default function Register() {
     console.log(count)
   }
 
-  useEffect(()=>{
-    // handleIncrement()
-  },[])
-
   const [succes, setSucces] = useState(false)
 
   const [showPassword, setShowPassword] = useState(false);
@@ -43,9 +34,6 @@ export default function Register() {
   const handlePasswordShow = () => setShowPassword(!showPassword);
   const handleConfirmPasswordShow = () => setShowConfirmPassword(!showConfirmPassword);
 
-  useQuery({
-    queryKey: ["login"]
-  })
 
   const handleRegister = async (data) => {
     try{
