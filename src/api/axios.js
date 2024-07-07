@@ -1,5 +1,12 @@
 import axios from 'axios'
 
-export default axios.create({
-    baseURL: 'http://159.89.106.166/',
+
+const instance = axios.create({
+    baseURL: 'https://pudge-backender.org.kg/',
+    headers: {
+        'Content-Type': 'application/json',
+    },
 })
+
+export const postRegister = (data)=> instance.post(`register/`, data) 
+export const postLogin = (data)=> instance.post(`login/`, data) 

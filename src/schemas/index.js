@@ -7,8 +7,8 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 export const registerSchema = yup.object().shape({
     email: yup
         .string()
-        .email("Please eneter valid email")
-        .required("Requiered"),
+        .email("Неверный адрес электронной почты")
+        .required("Требуется адрес электронной почты"),
         
     login: yup
         .string()
@@ -18,7 +18,7 @@ export const registerSchema = yup.object().shape({
         
     password: yup
         .string()
-        .min(5, 'От 8 до 15 символов')
+        .min(8, 'От 8 до 15 символов')
         .max(15, 'От 8 до 15 символов')
         .matches(/[a-z]/, 'Строчные и прописные буквы')
         .matches(/[A-Z]/, 'Строчные и прописные буквы')
@@ -28,8 +28,8 @@ export const registerSchema = yup.object().shape({
         
     confirmPassword: yup
         .string()
-        .oneOf([yup.ref("password"), null], "Password must match")
-        .required("Required")
+        .oneOf([yup.ref("password"), null], "Пароли должны совпадать")
+        .required("Пароли должны совпадать")
 })
 
 export const loginSchema = yup.object().shape({

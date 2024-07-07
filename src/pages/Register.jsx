@@ -1,4 +1,4 @@
-import axios from "../api/axios"
+import axios from "axios";
 
 import { useQuery, useMutation } from "@tanstack/react-query";
 
@@ -8,6 +8,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerSchema } from "../schemas"
 import { increment } from "../store/counterSlice";
+
+import { postRegister } from "../api/axios" 
 
 import eyeOpenedImg from '/imgs/eye-opened.svg'
 import eyeClosedImg from '/imgs/eye-closed.svg'
@@ -45,17 +47,9 @@ export default function Register() {
     queryKey: ["login"]
   })
 
-  const handleRegister = async (e) => {
+  const handleRegister = async (data) => {
     try{
-      const response = await axios.post(
-        register_url,
-        { email: "user@example.com", username: "someone", password: "password"}, 
-        {
-          headers: {'Content-Type': 'application/json'},
-          withCredentials: true
-        }
-      )
-
+      const response = await postRegister(data)
       console.log(response.data)
     } catch (err) {
       if(!err?.response){
@@ -75,10 +69,18 @@ export default function Register() {
     onSubmit: (values, actions)=>{
       console.log("submit")
       actions.resetForm()
-      handleRegister()
+      handleRegister({ email: values.email, username: values.login, password: values.password})
       navigate('/authLogin');
     },
   });
+
+  function testPasswordValidation(password, condition, text){
+      const icon = password ? (condition ? '✅' : '❌') : ''
+      const classname = password ? (condition ? "correct" : "error") : ''
+      return (
+        <li className={classname}>{text} {icon}</li>
+      )
+  }
 
   return (
     <>
@@ -89,7 +91,7 @@ export default function Register() {
       <div className="register container wrapper">
         <img className="background__img" src={background} alt="background" />
         <div className="form__section">
-          <h2>Вэлком бэк!</h2>
+          <h2>Создать аккаунт Lorby</h2>
           <form onSubmit={handleSubmit}>
             {errors.email && touched.email && <p className="error">{errors.email}</p>}
             <input
@@ -112,10 +114,10 @@ export default function Register() {
               value={values.login}
             />
             <div className="input__container">
-              {errors.password && touched.password && <p className="error">{errors.password}</p>}
+              {/* {errors.password && touched.password && <p className="error">{errors.password}</p>} */}
               <input
                 type={showPassword ? "text" : "password"}
-                className={errors.password && touched.password ? "input-error" : ""}
+                className={errors.password && touched.password ? "input-error red" : ""}
                 placeholder="Создай пароль"
                 name="password"
                 onChange={handleChange}
@@ -128,19 +130,28 @@ export default function Register() {
                 onClick={handlePasswordShow}
               />
             </div>
-            <ul className="">
-              {errors.password == "От 8 до 15 символов" ?
-               <h1>От 8 до 15 символов</h1> : <h1>От 8 до 15 символов ✅</h1>
-              }
-              {errors.password == "Строчные и прописные буквы" ?
-               <h1>Строчные и прописные буквы</h1> : <h1>Строчные и прописные буквы ✅</h1>
-              }
-              {errors.password == "Минимум 1 цифра" ?
-               <h1>Минимум 1 цифра</h1> : <h1>Минимум 1 цифра ✅</h1>
-              }
-              {errors.password == `Минимум 1 спецсимвол (!, ", #, $...)` ?
-               <h1>Минимум 1 спецсимвол (!, ", #, $...)</h1> : <h1>Минимум 1 спецсимвол (!, ", #, $...) ✅</h1>
-              }
+            <ul className="form__validation-list">
+              {testPasswordValidation(
+                values.password,
+                values.password.length >= 8 && values.password.length <= 15,
+                'От 8 до 15 символов'
+              )}
+              {testPasswordValidation(
+                values.password,
+                /[a-z]/.test(values.password) &&
+                /[A-Z]/.test(values.password),
+                'Строчные и прописные буквы'
+              )}
+              {testPasswordValidation(
+                values.password,
+                /\d/.test(values.password),
+                'Минимум 1 цифра'
+              )}
+              {testPasswordValidation(
+                values.password,
+                /[^a-zA-Z0-9]/.test(values.password),
+                'Минимум 1 спецсимвол (!, ", #, $...)'
+              )}
             </ul>
             <div className="input__container">
               {errors.confirmPassword && touched.confirmPassword && <p className="error">{errors.confirmPassword}</p>}

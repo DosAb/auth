@@ -4,8 +4,9 @@
 
     h2{
         font-size: 3.2rem;
-        font-weight: 500;
+        font-weight: 700;
         margin-bottom: 48px;
+        text-align: center;
     }
 
     #login{
@@ -38,7 +39,13 @@
         cursor: pointer;
     }
 
+    a{
+        text-align: center;
+        width: 100%;
+    }
+
     h3{
+        cursor: pointer;
         color: var(--button-color);
         font-weight: 500;
         line-height: 1.5;
@@ -47,12 +54,44 @@
         margin-top: 62px;
     }
 
+    p{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .form__validation-list{
+        margin-bottom: 14px;
+        list-style-type: initial;
+        padding-left: 14px;
+
+        li{
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 20px;
+            margin-bottom: 4px
+        }
+    }
+
 }
 
-input.input-error,
+input:focus{
+    border: 2px solid var(--button-color);
+}
+
+.input-error,
 select.input-error
 {
-    border: 1px solid red;
+    color: #EC0000;
+}
+
+.error{
+    color: #EC0000;
+    margin: 0px 0 8px;
+}
+
+.correct{
+    color: #1ba228;
 }
 
 .back__btn{
@@ -63,7 +102,7 @@ select.input-error
 }
 
 button{
-    margin-top: 62px;
+    margin-top: 48px;
 }
 
 .background__img{

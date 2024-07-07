@@ -10,7 +10,7 @@ import background from '/imgs/background.svg'
 
 import { loginSchema } from "../schemas"
 
-import axios from "../api/axios"
+// import axios from "../api/axios"
 
 
 export default function Login()
