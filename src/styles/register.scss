@@ -1,0 +1,110 @@
+.form__section{
+    max-width: 343px;
+    width: 100%;
+
+    h2{
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 48px;
+        text-align: center;
+    }
+
+    #login{
+        margin-bottom: 14px;
+    }
+
+    .input__container{
+        position: relative;
+    }
+
+    input{
+        width: 100%;
+        height: 5.2rem;
+        padding: 0 16px;
+        border-radius: 12px;
+        background: #f8f8f8;
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+    }
+
+    img{
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
+
+    a{
+        text-align: center;
+        width: 100%;
+    }
+
+    h3{
+        cursor: pointer;
+        color: var(--button-color);
+        font-weight: 500;
+        line-height: 1.5;
+        font-size: 1.6rem;
+        text-align: center;
+        margin-top: 62px;
+    }
+
+    p{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .form__validation-list{
+        margin-bottom: 14px;
+        list-style-type: initial;
+        padding-left: 14px;
+
+        li{
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 20px;
+            margin-bottom: 4px
+        }
+    }
+
+}
+
+input:focus{
+    border: 2px solid var(--button-color);
+}
+
+.input-error,
+select.input-error
+{
+    color: #EC0000;
+}
+
+.error{
+    color: #EC0000;
+    margin: 0px 0 8px;
+}
+
+.correct{
+    color: #1ba228;
+}
+
+.back__btn{
+    margin-top: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    margin-top: 48px;
+}
+
+.background__img{
+    width: 50%;
+}

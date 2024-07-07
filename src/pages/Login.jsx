@@ -3,6 +3,7 @@ import { useState } from "react"
 import "../styles/login.scss"
 
 import { useNavigate, NavLink } from 'react-router-dom';
+import { postLogin } from "../api/axios";
 
 import eyeOpenedImg from '/imgs/eye-opened.svg'
 import eyeClosedImg from '/imgs/eye-closed.svg'
@@ -19,11 +20,9 @@ export default function Login()
 
   const handlePasswordShow = () => setShowPassword(!showPassword);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (data) => {
     try{
-      const responce = await axios.get(
-        `https://pudge-backender.org.kg/email-verify/?token=${token}`,
-      )
+      const responce = await postLogin(data)
       console.log(responce.data)
     } catch (err) {
       if(!err?.responce){
@@ -40,7 +39,7 @@ export default function Login()
     validationSchema: loginSchema,
     onSubmit: (values, actions)=>{
       console.log("submit")
-      // handleLogin()
+      handleLogin({username: values.login, password: values.password})
     },
   });
 

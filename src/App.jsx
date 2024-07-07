@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
-import AuthLogin from "./components/AuthLogin";
+import AuthLogin from "./pages/AuthLogin";
 import "./styles/reset.scss"
 import "./styles/style.scss"
 
