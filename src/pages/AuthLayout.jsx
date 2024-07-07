@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import background from '/imgs/background.svg'
 
-export default function AuthLogin () {
+export default function AuthLayout () {
   const [showEscape, setShowEscape] = useState(false)
 
   return (
