@@ -7,10 +7,6 @@ import background from '/imgs/background.svg'
 export default function AuthLogin () {
   const [showEscape, setShowEscape] = useState(false)
 
-  function setShowTrue(){
-    setShowEscape(true)
-  }
-
   return (
     <main className='container wrapper'>
       <div className='container__auth'>
