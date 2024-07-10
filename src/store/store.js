@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterSlice';
+import tokenReducer from './tokenSlice';
+import loginReducer from './LoginSlice'
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    token: tokenReducer,
+    login: loginReducer,
   },
 });
 

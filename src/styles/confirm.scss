@@ -1,0 +1,39 @@
+.confirm{
+    h1{
+        font-size: 48px;
+        font-weight: 500;
+        line-height: 71.28px;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 41.58px;
+        text-align: center;
+
+    }
+
+    h3{
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 35.64px;
+        text-align: center;
+    }
+
+    p{
+        margin: 48px 0;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 29.7px;
+        text-align: center;
+    }
+
+    button{
+        margin-top: 24px;
+    }
+
+    .confirm__description{
+        max-width: 420px;
+    }
+}

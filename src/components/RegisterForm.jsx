@@ -3,21 +3,24 @@ import { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { registerSchema } from "../schemas";
-import { increment } from "../store/counterSlice";
+import { setToken } from "../store/tokenSlice";
+import { setLogin } from "../store/LoginSlice";
 import { postRegister } from "../api/axios";
 
 import eyeOpenedImg from "/imgs/eye-opened.svg";
 import eyeClosedImg from "/imgs/eye-closed.svg";
 
 export default function RegisterForm() {
-  const count = useSelector((state) => state.counter.value);
+  const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function handleIncrement() {
-    dispatch(increment());
-    console.log(count);
+  function handleToken() {
+    dispatch(setToken("tokeeen"));
+
+    console.log(token);
   }
+
 
   const [succes, setSucces] = useState(false);
 
@@ -56,7 +59,8 @@ export default function RegisterForm() {
         username: values.login,
         password: values.password,
       });
-      navigate("/authLayout");
+      dispatch(setLogin({username: values.login, password: values.password}))
+      navigate("/confirm");
     },
   });
 
